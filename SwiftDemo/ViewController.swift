@@ -199,7 +199,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //MARK: - Private
     
-    func checkSnakeIsAtIndex(index: NSInteger) -> Bool {
+    func checkSnakeIsAtIndex(index: NSInteger) -> Bool {   //判断蛇是不是在某个格子上
         
         for location in self.snakeBodyList {
             let snakeBody = location as! BoxLocation
@@ -211,7 +211,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return false
     }
     
-    func checkSnakeHeadIsImpactBody() -> Bool {
+    func checkSnakeHeadIsImpactBody() -> Bool {   //判断是否撞到自己身体了
         
         var i = 1
         
@@ -427,7 +427,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
+        //模拟器下方便用键盘操作方向
         if text.lowercased() == "w" {
             self.upAction()
         } else if text.lowercased() == "a" {
