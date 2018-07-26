@@ -139,8 +139,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func configSubViews() {
         self.view.addSubview(self.collectionView)
         self.collectionView.mas_makeConstraints({ (make:MASConstraintMaker!) in
-            make?.centerX.mas_equalTo()(self.view);
-            make?.centerY.mas_equalTo()(self.view)?.offset()(-50);
+            make?.centerX.mas_equalTo()(self.view)
+            make?.centerY.mas_equalTo()(self.view)?.offset()(-50)
             make?.width.height().mas_equalTo()(UIScreen.main.bounds.size.width)
         })
         
@@ -163,23 +163,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.view.addSubview(self.rightBtn)
         self.upBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
             make?.centerX.mas_equalTo()(self.view)
-            make?.top.mas_equalTo()(self.collectionView.mas_bottom)?.offset()(20);
-            make?.width.height().mas_equalTo()(40)
+            make?.top.mas_equalTo()(self.collectionView.mas_bottom)?.offset()(10);
+            make?.width.height().mas_equalTo()(60)
         }
         self.downBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
             make?.centerX.mas_equalTo()(self.view)
             make?.top.mas_equalTo()(self.upBtn.mas_bottom)?.offset()(80);
-            make?.width.height().mas_equalTo()(40)
+            make?.width.height().mas_equalTo()(60)
         }
         self.leftBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make?.right.mas_equalTo()(self.upBtn.mas_left)?.offset()(-20);
-            make?.top.mas_equalTo()(self.upBtn.mas_bottom)?.offset()(20);
-            make?.width.height().mas_equalTo()(40)
+            make?.right.mas_equalTo()(self.upBtn.mas_left)?.offset()(-10);
+            make?.top.mas_equalTo()(self.upBtn.mas_bottom)?.offset()(10);
+            make?.width.height().mas_equalTo()(60)
         }
         self.rightBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make?.left.mas_equalTo()(self.upBtn.mas_right)?.offset()(20);
-            make?.top.mas_equalTo()(self.upBtn.mas_bottom)?.offset()(20);
-            make?.width.height().mas_equalTo()(40)
+            make?.left.mas_equalTo()(self.upBtn.mas_right)?.offset()(10);
+            make?.top.mas_equalTo()(self.upBtn.mas_bottom)?.offset()(10);
+            make?.width.height().mas_equalTo()(60)
         }
     }
     
@@ -449,14 +449,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BoxCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BoxCell", for: indexPath) as! BoxCell
         
         if self.checkSnakeIsAtIndex(index: indexPath.item) {
-            cell.backgroundColor = UIColor.blue
+            cell.updateBodyColor(bodyColor: UIColor.blue)
         } else if self.food?.index == indexPath.item {
-            cell.backgroundColor = UIColor.green
+            cell.updateBodyColor(bodyColor: UIColor.green)
         } else {
-            cell.backgroundColor = UIColor.black
+            cell.updateBodyColor(bodyColor: UIColor.clear)
         }
         
         return cell
