@@ -18,6 +18,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     var currentDirection : Int = 1  // 0 up, 1 left, 2 down, 3 right
     
+    var canTurn : Bool = true  //用于控制蛇在移动帧数时间内不能转向
+    
     var snakeHead : BoxLocation?
     
     var food : BoxLocation?
@@ -371,43 +373,49 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if self.checkSnakeHeadIsImpactBody() {
             self.showYouLost()
         }
+        
+        self.canTurn = true
     }
     
     //MARK: - Action
     
     @objc func upAction() {
         
-        if self.currentDirection == 2 {
+        if !self.canTurn || self.currentDirection == 2 {
             return
         }
         
+        self.canTurn = false
         self.currentDirection = 0
     }
     
     @objc func leftAction() {
         
-        if self.currentDirection == 3 {
+        if !self.canTurn || self.currentDirection == 3 {
             return
         }
         
+        self.canTurn = false
         self.currentDirection = 1
     }
     
     @objc func downAction() {
         
-        if self.currentDirection == 0 {
+        if !self.canTurn || self.currentDirection == 0 {
             return
         }
         
+        self.canTurn = false
         self.currentDirection = 2
     }
     
     @objc func rightAction() {
         
-        if self.currentDirection == 1 {
+        if !self.canTurn || self.currentDirection == 1 {
             return
         }
         
+        self.canTurn = false
         self.currentDirection = 3
     }
     
