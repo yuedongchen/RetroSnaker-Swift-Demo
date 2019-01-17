@@ -26,7 +26,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     var timer : Timer?
     
-    
     //MARK: - lazy
     
     lazy var snakeBodyList : NSMutableArray = {
@@ -381,46 +380,59 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @objc func upAction() {
         
-        if !self.canTurn || self.currentDirection == 2 {
+        if !self.canTurn || self.currentDirection == 2 || self.currentDirection == 0 {
+            self.snakeMove()
+            NSLog("keep up")
             return
         }
         
+        NSLog("turn up")
         self.canTurn = false
         self.currentDirection = 0
     }
     
     @objc func leftAction() {
         
-        if !self.canTurn || self.currentDirection == 3 {
+        if !self.canTurn || self.currentDirection == 3 || self.currentDirection == 1 {
+            self.snakeMove()
+            NSLog("keep left")
             return
         }
-        
+
+        NSLog("turn left")
         self.canTurn = false
         self.currentDirection = 1
     }
     
     @objc func downAction() {
         
-        if !self.canTurn || self.currentDirection == 0 {
+        if !self.canTurn || self.currentDirection == 0 || self.currentDirection == 2 {
+            self.snakeMove()
+            NSLog("keep down")
             return
         }
         
+        NSLog("turn down")
         self.canTurn = false
         self.currentDirection = 2
     }
     
     @objc func rightAction() {
         
-        if !self.canTurn || self.currentDirection == 1 {
+        if !self.canTurn || self.currentDirection == 1 || self.currentDirection == 3 {
+            self.snakeMove()
+            NSLog("keep right")
             return
         }
-        
+
+        NSLog("turn right")
         self.canTurn = false
         self.currentDirection = 3
     }
     
     func startAction() {
         
+        self.currentDirection = 1
         self.timer = Timer.scheduledTimer(timeInterval: 0.13, target: self, selector: #selector(snakeMove), userInfo: nil, repeats: true)
         
     }
